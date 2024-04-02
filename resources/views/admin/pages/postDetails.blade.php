@@ -42,7 +42,7 @@
             <div class="mb-3">
                 <h4><b><strong class="text-success text-xl">Image:</strong></b></h4>
                 <div class="text-center">
-                    <img class="t" src="{{ asset('/postimage/'.$post->image) }}" width="500" height="300" alt="">
+                    <img class="p-8 w-full" src="{{ asset('/postimage/'.$post->image) }}" width="500" height="300" alt="">
                 </div>
             </div>
 

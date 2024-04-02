@@ -64,20 +64,45 @@ class AdminController extends Controller
 
 
     //==========================================//
+  
     public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
+    
+        // Update other attributes
         $post->title = $request->title;
         $post->description = $request->description;
         $post->name = $request->name;
-        if($request->image){
-            $imagename = time().'.'.$request->image->getClientOriginalExtension();
-            $request->image->move('postimage',$imagename);
-            $post->image = $imagename;
+    
+        // Check if a new image is uploaded
+        if ($request->hasFile('image')) {
+            // Get the uploaded image
+            $image = $request->file('image');
+    
+            // Generate a unique filename
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+    
+            // Move the uploaded image to the public directory
+            $image->move(public_path('postimage'), $imageName);
+    
+            // Delete the previous image if it exists
+            if ($post->image) {
+                $previousImagePath = public_path('postimage') . '/' . $post->image;
+                if (file_exists($previousImagePath)) {
+                    unlink($previousImagePath);
+                }
+            }
+    
+            // Update the post's image attribute
+            $post->image = $imageName;
         }
+    
+        // Save the post
         $post->save();
+    
         return redirect()->route('show.post')->with('success', 'Post Updated Successfully');
     }
+    
  
 
     // This method will  delete products page
@@ -86,7 +111,7 @@ class AdminController extends Controller
        $post = Post::findOrFail($id);
 
       // delete old image
-      File::delete(public_path('/postimage/'.$post->image));
+      File::delete(public_path('postimage/'.$post->image));
 
 
       //delete product from database
@@ -102,5 +127,23 @@ class AdminController extends Controller
       $post = Post::findOrFail($id);
       return view('admin.pages.postDetails', compact('post'));
     }
+
+
+
+    public function acceptPost($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->post_status = 'active';
+        $post->save();
+        return redirect()->route('show.post')->with('success', 'Post Accepted Successfully');
+    }
+
+    public function rejectPost($id){
+        $post = Post::findOrFail($id);
+        $post->post_status = 'rejected';
+        $post->save();
+        return redirect()->route('show.post')->with('success', 'Post Rejected Successfully');
+    }
+
 
 }

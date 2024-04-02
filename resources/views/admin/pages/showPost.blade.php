@@ -9,7 +9,7 @@
         @if (session()->has('success'))
         <div class="alert alert-success">{{ session()->get('success') }}</div>
         @endif
-        <div class="col-md-10">
+        <div class="col-md-12 p-4">
             <div class="card boreder-0 shadow-lg my-4">
                 <div class="card-header bg-dark">
                     <h3 class="text-white"> Post List</h3>
@@ -18,12 +18,14 @@
                 <div>
                     <table class="table">
                         <thead>
-                          <tr>
+                          <tr class="">
                             <th scope="col">SL</th>
                             <th scope="col">Title</th>
-                            <th scope="col">User Id</th>
+                            <th scope="col">Post by</th>
+                            <th scope="col">Post Status</th>
+                            <th scope="col">User Type</th>
                             <th scope="col">Image</th>
-                            <th scope="col">Created_at</th>
+                            {{-- <th scope="col">Created_at</th> --}}
                             {{-- <th scope="col">Description</th>
                             <th scope="col">Image</th> --}}
                             <th scope="col" class="text-center">Action</th>
@@ -34,16 +36,20 @@
                           <tr>
                             <th scope="row">{{ $loop->index+1 }}</th>
                             <td>{{ $post->title }}</td>
-                            <td>{{ $post->user_id }}</td>
+                            <td>{{ $post->name }}</td>
+                            <td>{{ $post->post_status }}</td>
+                            <td>{{ $post->usertype }}</td>
                             <td>
                               <img src="{{ asset('postimage/' . $post->image) }}" width="50px" height="50px" alt="" style="border-radius: 50%;">
                           </td>
                           
-                            <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d M Y H:i:s') }}</td>
+                            {{-- <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d M Y H:i:s') }}</td> --}}
                            
                             <td class="text-center">
                                 <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">Edit</a>
                                 <a href="{{ route('view.post', $post->id) }}" class="btn btn-success">View</a>
+                                <a href="{{ route('accept.post', $post->id) }}" class="btn btn-success">Accept</a>
+                                <a href="{{ route('reject.post', $post->id) }}" class="btn btn-success">Reject</a>
 
                                
                                

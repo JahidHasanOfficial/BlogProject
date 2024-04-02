@@ -1,12 +1,12 @@
 <div class="header_main">
     <div class="mobile_menu">
        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="logo_mobile"><a href="index.html"><img src="images/logo.png"></a></div>
+          <div class="logo_mobile"><a href="index.html"><img src="{{ asset('frontend') }}/assets/images/logo.png"></a></div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-             <ul class="navbar-nav">
+             <ul class="navbar-nav ">
                 <li class="nav-item">
                    <a class="nav-link" href="index.html">Home</a>
                 </li>
@@ -14,30 +14,37 @@
                    <a class="nav-link" href="about.html">About</a>
                 </li>
                 <li class="nav-item">
-                   <a class="nav-link" href="services.html">Services</a>
-                </li>
-                <li class="nav-item">
                    <a class="nav-link " href="blog.html">Blog</a>
                 </li>
                 @if (Route::has('login'))
-                @auth
-      
+               @auth
    
-                <x-app-layout>
-   
-                </x-app-layout>
 
-                @else
+             <x-app-layout>
 
-                <li class="nav-item">
-                   <a class="nav-link " href="{{ route('login') }}">login</a>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-link " href="{{ route('register') }}">Register</a>
-                </li>
+             </x-app-layout>
+             
+             <li class="nav-item">
+               <a class="nav-item" href="{{ route('my.post') }}">My Post</a> 
+            </li>
+             <li class="nav-item">
+               <a class="nav-item" href="{{ route('user.create.post') }}">Create Post</a>
+            </li>
+                
+            @else
 
-                @endauth
-                @endif
+             <li class="nav-item">
+               <a class="nav-item" href="{{ route('login') }}">Login</a>
+            </li>
+
+             <li class="nav-item">
+               <a class="nav-item" href="{{ route('register') }}">Register</a>
+            </li>
+             
+
+
+             @endauth
+             @endif
 
              </ul>
           </div>
@@ -59,7 +66,7 @@
 
              </x-app-layout>
              <li><a href="{{ route('my.post') }}">My Post</a></li>
-             <li><a href="{{ route('create.post') }}">Create Post</a></li>
+             <li><a href="{{ route('user.create.post') }}">Create Post</a></li>
                 
             @else
 

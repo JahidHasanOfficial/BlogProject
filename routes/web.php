@@ -66,17 +66,25 @@ Route::get('/post/{id}/view', [AdminController::class, 'view'])->name('view.post
 Route::put('/posts/{id}', [AdminController::class, 'update'])->name('post.update');
 Route::delete('/posts/{id}', [AdminController::class, 'destroy'])->name('post.destroy');
 Route::get('/show/post', [AdminController::class, 'showPost'])->name('show.post');
+Route::get('/accept/post/{id}', [AdminController::class, 'acceptPost'])->name('accept.post');
+Route::get('/reject/post/{id}', [AdminController::class, 'rejectPost'])->name('reject.post');
 
 
 
 //=======User Post Route=======================================//
-Route::get('/create/post',[UserController::class, 'createPost'])->middleware('auth')->name('create.post');
-Route::post('/post', [UserController::class, 'store'])->middleware('auth')->name('post.store');
-Route::get('/post/{id}/edit', [UserController::class, 'edit'])->name('post.edit');
+Route::get('/user/create/post',[UserController::class, 'createPost'])->middleware('auth')->name('user.create.post');
+Route::post('/post', [UserController::class, 'store'])->middleware('auth')->middleware('auth')->name('post.store');
+
+
+
+Route::get('/my_post/{id}/edit', [UserController::class, 'edit'])->middleware('auth')->name('post.user.edit');
+
+
+
 Route::get('/my/post', [UserController::class, 'myPost'])->name('my.post');
-Route::put('/posts/{id}', [UserController::class, 'update'])->name('post.update');
-Route::delete('/posts/{id}', [UserController::class, 'destroy'])->name('post.destroy');
-Route::get('/show/post', [UserController::class, 'showPost'])->name('show.post');
+Route::put('/my_posts/{id}', [UserController::class, 'update'])->middleware('auth')->name('mypost.update');
+Route::get('/posts/{id}', [UserController::class, 'destroy'])->name('mypost.destroy');
+//Route::get('/show/post', [UserController::class, 'showPost'])->name('show.post');
 
 
 

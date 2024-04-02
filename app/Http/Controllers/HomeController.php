@@ -15,7 +15,7 @@ class HomeController extends Controller
             $usertype = Auth()->user()->usertype;
             if($usertype == 'user'){
               
-                $posts = Post::all();
+                $posts = Post::where('post_status', '=', 'active')->get();
                 return view('frontend.pages.homepage', compact('posts'));
             }
            else if($usertype == 'admin'){
@@ -35,7 +35,7 @@ class HomeController extends Controller
 
 
     public function homepage(){
-        $posts = Post::all();
+        $posts = Post::where('post_status', '=', 'active')->get();
        // return $posts;
         return view('frontend.pages.homepage', compact('posts'));
     }

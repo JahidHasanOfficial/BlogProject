@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>A World</title>
+      <title>Blog Website</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -45,7 +45,7 @@
       <!-- copyright section start -->
       <div class="copyright_section">
          <div class="container">
-            <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+            <p class="copyright_text">2020 All Rights Reserved. Design by me</p>
          </div>
       </div>
       <!-- copyright section end -->
