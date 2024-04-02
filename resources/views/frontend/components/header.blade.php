@@ -44,7 +44,7 @@
        </nav>
     </div>
     <div class="container-fluid">
-       <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
+       <div class="logo"><a href="index.html"><img src="{{ asset('frontend') }}/assets/images/logo.png"></a></div>
        <div class="menu_main">
           <ul>
              <li class="active"><a href="{{ url('/') }}">Home</a></li>
@@ -58,13 +58,17 @@
              <x-app-layout>
 
              </x-app-layout>
-            
+             <li><a href="{{ route('my.post') }}">My Post</a></li>
+             <li><a href="{{ route('create.post') }}">Create Post</a></li>
                 
             @else
 
              <li><a href="{{ route('login') }}">Login</a></li>
 
              <li><a href="{{ route('register') }}">Register</a></li>
+             
+
+
              @endauth
              @endif
           </ul>

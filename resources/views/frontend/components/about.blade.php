@@ -9,7 +9,7 @@
              </div>
           </div>
           <div class="col-md-6 padding_right_0">
-             <div><img src="images/about-img.png" class="about_img"></div>
+             <div><img src="{{ asset('frontend') }}/assets/images/about-img.png" class="about_img"></div>
           </div>
        </div>
     </div>

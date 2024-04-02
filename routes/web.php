@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,10 @@ Route::get('/post_details/{id}', [homeController::class, 'post_details']);
 
 
 
+
+
+
+
 Route::get('/page',[homeController::class, 'page'])->name('page');
 
 // Route::get('/dashboard', function () {
@@ -57,23 +62,25 @@ require __DIR__.'/auth.php';
 Route::get('/create/post',[AdminController::class, 'createPost'])->name('create.post');
 Route::post('/post', [AdminController::class, 'store'])->name('post.store');
 Route::get('/post/{id}/edit', [AdminController::class, 'edit'])->name('post.edit');
-
-
-
 Route::get('/post/{id}/view', [AdminController::class, 'view'])->name('view.post');
-
-
-
-
-
-
 Route::put('/posts/{id}', [AdminController::class, 'update'])->name('post.update');
 Route::delete('/posts/{id}', [AdminController::class, 'destroy'])->name('post.destroy');
-
-
-
-
 Route::get('/show/post', [AdminController::class, 'showPost'])->name('show.post');
+
+
+
+//=======User Post Route=======================================//
+Route::get('/create/post',[UserController::class, 'createPost'])->middleware('auth')->name('create.post');
+Route::post('/post', [UserController::class, 'store'])->middleware('auth')->name('post.store');
+Route::get('/post/{id}/edit', [UserController::class, 'edit'])->name('post.edit');
+Route::get('/my/post', [UserController::class, 'myPost'])->name('my.post');
+Route::put('/posts/{id}', [UserController::class, 'update'])->name('post.update');
+Route::delete('/posts/{id}', [UserController::class, 'destroy'])->name('post.destroy');
+Route::get('/show/post', [UserController::class, 'showPost'])->name('show.post');
+
+
+
+
 
 
 

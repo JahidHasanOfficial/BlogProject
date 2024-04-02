@@ -48,5 +48,4 @@
 
 
 
-<h1>ad post</h1>
 @endsection

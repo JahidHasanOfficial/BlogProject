@@ -16,10 +16,11 @@ class HomeController extends Controller
             if($usertype == 'user'){
               
                 $posts = Post::all();
-                return view('frontend.homepage', compact('posts'));
+                return view('frontend.pages.homepage', compact('posts'));
             }
            else if($usertype == 'admin'){
-                return view('admin.layout.app');
+               // return view('admin.layout.app');
+                return view('admin.pages.adminHomePage');
             }
             else{
                 return redirect()->back();
@@ -35,17 +36,21 @@ class HomeController extends Controller
 
     public function homepage(){
         $posts = Post::all();
-        return view('frontend.homepage', compact('posts'));
+       // return $posts;
+        return view('frontend.pages.homepage', compact('posts'));
     }
 
 
     public function post_details($id){
         
-        $posts = Post::find($id);
-       // return $posts;
-        return view('frontend.post_details', compact('posts'));
+        $post = Post::findOrFail($id);
+        // return $posts;
+        return view('frontend.pages.post_details', compact('post'));
   
     }
+
+
+
     
 
     
