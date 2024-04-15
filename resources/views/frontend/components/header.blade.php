@@ -16,6 +16,7 @@
                 <li class="nav-item">
                    <a class="nav-link " href="blog.html">Blog</a>
                 </li>
+                
                 @if (Route::has('login'))
                @auth
    
@@ -23,22 +24,24 @@
              <x-app-layout>
 
              </x-app-layout>
-             
-             <li class="nav-item">
-               <a class="nav-item" href="{{ route('my.post') }}">My Post</a> 
+            
+
+            <li class="nav-item">
+               <a class="nav-link" href="{{ route('my.post') }}">My Post</a> 
             </li>
-             <li class="nav-item">
-               <a class="nav-item" href="{{ route('user.create.post') }}">Create Post</a>
+            <li class="nav-item">
+               <a class="nav-link " href="{{ route('user.create.post') }}">Create Post</a>
             </li>
                 
             @else
 
-             <li class="nav-item">
-               <a class="nav-item" href="{{ route('login') }}">Login</a>
-            </li>
+             
 
-             <li class="nav-item">
-               <a class="nav-item" href="{{ route('register') }}">Register</a>
+            <li class="nav-item">
+               <a class="nav-link" href="{{ route('login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link " href="{{ route('register') }}">Register</a>
             </li>
              
 

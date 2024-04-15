@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -68,6 +69,17 @@ Route::delete('/posts/{id}', [AdminController::class, 'destroy'])->name('post.de
 Route::get('/show/post', [AdminController::class, 'showPost'])->name('show.post');
 Route::get('/accept/post/{id}', [AdminController::class, 'acceptPost'])->name('accept.post');
 Route::get('/reject/post/{id}', [AdminController::class, 'rejectPost'])->name('reject.post');
+
+
+//====================About us Route for Admin=====================================
+
+Route::get('/create/aboute', [AboutController::class, 'createAbout'])->name('create.about');
+Route::post('/about/store', [AboutController::class, 'aboutStore'])->name('about.store');
+Route::get('/about/show', [AboutController::class, 'aboutShow'])->name('about.show');
+Route::get('/about/view/{id}', [AboutController::class, 'aboutView'])->name('about.view');
+Route::get('/about/{id}/edit', [AboutController::class, 'aboutEdit'])->name('about.edit');
+Route::put('/about/{id}', [AboutController::class, 'aboutUpdate'])->name('about.update');
+//Route::delete('/about/{id}', [AboutController::class, 'aboutDestroy'])->name('about.destroy');
 
 
 

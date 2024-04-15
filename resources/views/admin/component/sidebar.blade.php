@@ -13,7 +13,9 @@
           <li><a href="{{ route('create.post') }}"> <i class="icon-grid"></i>Add Post </a></li>
           <li><a href="{{ route('show.post') }}"> <i class="fa fa-bar-chart"></i>Show Post </a></li>
         
-          <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
+          <li><a href="{{ route('create.about') }}"> <i class="icon-padnote"></i>Create About-Us</a></li>
+          <li><a href="{{ route('about.show') }}"> <i class="icon-padnote"></i>Show About-Us</a></li>
+         
           <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="#">Page</a></li>
@@ -28,4 +30,7 @@
     <li> <a href="#"> <i class="icon-writing-whiteboard"></i>Demo </a></li>
     <li> <a href="#"> <i class="icon-chart"></i>Demo </a></li>
   </ul>
+
+ 
+
 </nav>
