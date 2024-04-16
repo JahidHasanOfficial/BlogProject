@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="services_section layout_padding">
+<div class="services_section layout_padding" id="blog">
     <div class="container">
        <h1 class="services_taital">Blog Posts</h1>
        <p class="services_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration</p>
@@ -24,5 +24,25 @@
        </div>
     </div>
  </div>
+
+
+ <div class="about_section layout_padding" id="about">
+  <div class="container-fluid">
+      <div class="row">
+          @foreach($abouts as $about)
+          <div class="col-md-6">
+              <div class="about_taital_main">
+                  <h1 class="about_taital">About Us</h1>
+                  <p class="about_text">{{ $about->description }}</p>
+                  <div class="readmore_bt"><a href="{{ url('about_details', $about->id) }}">Read More</a></div>
+              </div>
+          </div>
+          <div class="col-md-6 padding_right_0">
+              <div><img src="{{ asset('aboutimage/' . $about->image) }}" class="about_img"></div>
+          </div>
+          @endforeach
+      </div>
+  </div>
+</div>
 
 @endsection

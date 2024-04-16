@@ -15,7 +15,7 @@
         <div class="card-body">
             <div class="mb-3">
                 <label for="name" class="form-label h5">Name:</label>
-                <input type="text" value="{{ old('name') }}" class="@error('name')@enderror form-control" id="name" name="name" placeholder="Enter your name">
+                <input type="text" value="{{ old('name', $data->name) }}" class="@error('name')@enderror form-control" id="name" name="name" placeholder="Enter your name">
                 @error('name')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -25,25 +25,25 @@
            
             <div class="mb-3">
                 <label for="phone" class="form-label h5">Phone:</label>
-                <input type="number" class="form-control" value="{{ old('phone') }}" id="phone" name="phone" placeholder="Enter your phone">
+                <input type="number" class="form-control" value="{{ old('phone', $data->phone) }}" id="phone" name="phone" placeholder="Enter your phone">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label h5">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                <input type="email" class="form-control" value="{{ old('email', $data->email) }}" id="email" name="email" placeholder="Enter your email">
             </div>
             <div class="mb-3">
                 <label for="experience" class="form-label h5">Experience:</label>
-                <input type="text" class="form-control" id="experience" name="experience" placeholder="Enter your experience">
+                <input type="text" class="form-control" id="experience" value="{{ old('experience', $data->experience) }}" name="experience" placeholder="Enter your experience">
             </div>
 
             <div class="mb-3">
                 <label for="address" class="form-label h5">Address:</label>
-                <textarea name="address"  class="form-control bg-white" id="" cols="" rows="2" placeholder="Enter your address" >{{ old('address') }}</textarea>
+                <textarea name="address"  class="form-control bg-white" id="" cols="" rows="2" placeholder="Enter your address" >{{ old('address', $data->address) }}</textarea>
             </div>
 
             <div class="mb-3">
                 <label for="description" class="form-label h5">Description:</label>
-                <textarea name="description"  class="form-control bg-white" id="" cols="" rows="5" placeholder="Enter your Description" >{{ old('description') }}</textarea>
+                <textarea name="description"  class="form-control bg-white" id="" cols="" rows="5" placeholder="Enter your Description" >{{ old('description', $data->description) }}</textarea>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label h5">Image:</label>

@@ -34,7 +34,7 @@
    
       <!-- services section end -->
       <!-- about section start -->
-    @include('frontend.components.about')
+    {{-- @include('frontend.components.about') --}}
       <!-- about section end -->
       <!-- blog section start -->
     

@@ -10,6 +10,10 @@ class AboutController extends Controller
 {
     //
 
+
+
+ 
+
     public function createAbout(){
         return view('admin.pages.createAbouts');
     }
@@ -47,48 +51,39 @@ class AboutController extends Controller
     }
 
 
-    public function aboutUpdate(Request $request ,$id){
-
-    
+    public function aboutUpdate(Request $request, $id)
+    {
         $data = About::findOrFail($id);
-
-        $data->name = $request->name;
-        $data->phone = $request->phone;
-        $data->email = $request->email;
-        $data->experience = $request->experience;
-        $data->address = $request->address;
-        $data->description = $request->description;
-        
-
-
-        //==============image uploade in database ============================//
-       $data->image = $request->image;
-       if ($request->hasFile('image')) {
-        // Get the uploaded image
-        $image = $request->file('image');
-
-        // Generate a unique filename
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-        // Move the uploaded image to the public directory
-        $image->move(public_path('postimage'), $imageName);
-
-        // Delete the previous image if it exists
-        if ($data->image) {
-            $previousImagePath = public_path('aboutimage') . '/' . $data->image;
-            if (file_exists($previousImagePath)) {
-                unlink($previousImagePath);
+    
+        // Update the fields from the request
+        $data->name = $request->input('name');
+        $data->phone = $request->input('phone');
+        $data->email = $request->input('email');
+        $data->experience = $request->input('experience');
+        $data->address = $request->input('address');
+        $data->description = $request->input('description');
+    
+        // Check if image is being updated
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('aboutimage'), $imageName);
+    
+            // Delete the previous image if it exists
+            if ($data->image && file_exists(public_path('aboutimage') . '/' . $data->image)) {
+                unlink(public_path('aboutimage') . '/' . $data->image);
             }
+    
+            // Update the image attribute
+            $data->image = $imageName;
         }
-
-        // Update the post's image attribute
-        $data->image = $imageName;
+    
+        // Save the updated data
+        $data->save();
+    
+        return redirect()->back()->with('success', 'About updated successfully');
     }
-
-    // Save the post
-    $data->save();
-        return redirect()->back()->with('success','About created successfully');
-    }
+    
 
 
     public function aboutShow(){

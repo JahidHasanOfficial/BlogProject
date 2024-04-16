@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Psy\Exception\Exception;
@@ -16,7 +17,8 @@ class HomeController extends Controller
             if($usertype == 'user'){
               
                 $posts = Post::where('post_status', '=', 'active')->get();
-                return view('frontend.pages.homepage', compact('posts'));
+                $abouts = About::orderBy('created_at','desc')->get();
+                return view('frontend.pages.homepage', compact('posts','abouts'));
             }
            else if($usertype == 'admin'){
                // return view('admin.layout.app');
@@ -36,9 +38,10 @@ class HomeController extends Controller
 
     public function homepage(){
         $posts = Post::where('post_status', '=', 'active')->get();
-       // return $posts;
-        return view('frontend.pages.homepage', compact('posts'));
+        $abouts = About::orderBy('created_at','desc')->get();
+        return view('frontend.pages.homepage', compact('posts', 'abouts'));
     }
+    
 
 
     public function post_details($id){
@@ -50,7 +53,16 @@ class HomeController extends Controller
     }
 
 
+    public function about_details($id){
+        
+        $about = About::findOrFail($id);
 
+        // dd($about);
+        return view('frontend.pages.about_details', compact('about'));
+  
+    }
+  
+    
     
 
     

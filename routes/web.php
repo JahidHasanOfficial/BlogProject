@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,22 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[homeController::class, 'homepage'])->name('homepage');
 //Route::get('/post/{id}/details', [homeController::class, 'postDetails'])->name('post.details');
 
+Route::get('/',[HomeController::class, 'homepage'])->name('homepage');
+//Route::get('/about',[HomeController::class, 'aboutPages'])->name('about.page');
 
 
 
 
-Route::get('/post_details/{id}', [homeController::class, 'post_details']);
-
-
-
-
-
-
-
-
+Route::get('/post_details/{id}', [HomeController::class, 'post_details']);
+Route::get('/about_details/{id}', [HomeController::class, 'about_details']);
 
 
 
@@ -42,7 +37,16 @@ Route::get('/post_details/{id}', [homeController::class, 'post_details']);
 
 
 
-Route::get('/page',[homeController::class, 'page'])->name('page');
+
+
+
+
+
+
+
+
+
+Route::get('/page',[HomeController::class, 'page'])->name('page');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -78,7 +82,7 @@ Route::post('/about/store', [AboutController::class, 'aboutStore'])->name('about
 Route::get('/about/show', [AboutController::class, 'aboutShow'])->name('about.show');
 Route::get('/about/view/{id}', [AboutController::class, 'aboutView'])->name('about.view');
 Route::get('/about/{id}/edit', [AboutController::class, 'aboutEdit'])->name('about.edit');
-Route::put('/about/{id}', [AboutController::class, 'aboutUpdate'])->name('about.update');
+Route::put('/about/{id}/update', [AboutController::class, 'aboutUpdate'])->name('about.update');
 //Route::delete('/about/{id}', [AboutController::class, 'aboutDestroy'])->name('about.destroy');
 
 
